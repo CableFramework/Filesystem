@@ -1,7 +1,7 @@
 {
-  "name": "anonym-php/anonym-library",
+  "name": "cable/cable-filesystem",
   "type": "library",
-  "description": "AnonymFramework, New Professional PHP Framework System Libraries",
+  "description": "Cable Framework, New Professional PHP Framework System Libraries",
   "license": "MIT",
   "homepage": "http://gemframework.com",
   "support": {

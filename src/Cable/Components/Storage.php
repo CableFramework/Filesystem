@@ -10,6 +10,7 @@
 namespace Cable\Filesystem;
 
 use League\Flysystem\Adapter\Local as LocalAdapter;
+use League\Flysystem\FilesystemNotFoundException;
 use League\Flysystem\Rackspace\RackspaceAdapter;
 use League\Flysystem\Adapter\Ftp as FtpAdapter;
 use League\Flysystem\Filesystem as FlySystem;
@@ -80,13 +81,23 @@ class Storage
      * add a new driver
      *
      * @param string $name
-     * @param null $driver
+     * @param callable $driver
      * @return $this
      */
-    public function add($name = '', $driver = null)
+    public function add($name = '',callable $driver = null)
     {
         $this->driverList[$name] = $driver;
         return $this;
+    }
+
+    /**
+     * @param string $add
+     * @param callable $driver
+     * @return Storage
+     */
+    public function extend($add,callable $driver)
+    {
+        return $this->add($add, $driver);
     }
 
     /**
@@ -119,17 +130,22 @@ class Storage
      */
     private function findDriver($driver = '')
     {
-        if (isset($this->driverList[$driver])) {
+        if (is_string($driver) && isset($this->driverList[$driver])) {
             $driver = $this->driverList[$driver];
+
+            if (is_callable($driver)) {
+                $response = $driver();
+            } else {
+                $callableName = "create" . ucfirst($driver) . "Driver";
+                $response = call_user_func([$this, $callableName]);
+            }
         } else {
             throw new DriverNotFoundException(sprintf('%s adında bir sürücü bulunamadı', $driver));
         }
 
-        if (is_string($driver)) {
-            $callableName = "create" . ucfirst($driver) . "Driver";
-            $response = call_user_func([$this, $callableName]);
-        } elseif (is_callable($driver)) {
-            $response = $driver();
+
+        if (!$response instanceof FilesystemInterface) {
+            throw new FilesystemNotFoundException(sprintf('Your callback must return a %s instnace', 'League\Flysystem\FilesystemInterface'));
         }
 
         return $response;
