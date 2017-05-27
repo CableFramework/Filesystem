@@ -65,7 +65,6 @@ class Storage
             $this->setConfig($configs);
         }
 
-        // do nothing
     }
     /**
      * Sürücü seçimi yapar
