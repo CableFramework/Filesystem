@@ -18,4 +18,6 @@ use Exception;
 class DriverNotFoundException extends Exception
 {
 
+    // do nothing
+
 }
