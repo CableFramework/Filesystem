@@ -140,7 +140,12 @@ class Storage
                 $response = call_user_func([$this, $callableName]);
             }
         } else {
-            throw new DriverNotFoundException(sprintf('%s adında bir sürücü bulunamadı', $driver));
+            throw new DriverNotFoundException(
+                sprintf(
+                    '%s adında bir sürücü bulunamadı',
+                    $driver)
+            )
+            ;
         }
 
 

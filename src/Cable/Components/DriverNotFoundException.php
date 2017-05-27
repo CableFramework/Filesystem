@@ -8,7 +8,7 @@
  * Thanks for using
  */
 
-namespace Anonym\Filesystem;
+namespace Cable\Filesystem;
 use Exception;
 
 /**
@@ -18,11 +18,4 @@ use Exception;
 class DriverNotFoundException extends Exception
 {
 
-    /**
-     * @param string $message
-     */
-    public function __construct($message = '')
-    {
-        $this->message = $message;
-    }
 }
