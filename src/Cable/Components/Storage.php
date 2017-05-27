@@ -10,6 +10,7 @@
 namespace Cable\Filesystem;
 
 use League\Flysystem\Adapter\Local as LocalAdapter;
+use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemNotFoundException;
 use League\Flysystem\Rackspace\RackspaceAdapter;
 use League\Flysystem\Adapter\Ftp as FtpAdapter;
@@ -70,7 +71,7 @@ class Storage
      * Sürücü seçimi yapar
      *
      * @param null $driver
-     * @return FilesystemAdapter|bool
+     * @return Adapter|bool
      */
     public function disk($driver = null)
     {
@@ -81,7 +82,7 @@ class Storage
      * Sürücü Seçimi yapar
      *
      * @param null $driver
-     * @return FilesystemAdapter|bool
+     * @return Adapter|bool
      */
     public function driver($driver = null)
     {

@@ -30,7 +30,14 @@ class Adapter
     public function __construct(FilesystemInterface $adapter)
     {
         $this->adapter = $adapter;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getAdapter()
+    {
+        return $this->adapter->getAdapter();
     }
 
     /**
