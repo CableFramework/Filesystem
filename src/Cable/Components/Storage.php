@@ -56,6 +56,18 @@ class Storage
 
 
     /**
+     * Storage constructor.
+     * @param array $configs
+     */
+    public function __construct($configs = array())
+    {
+        if ( !empty($configs)) {
+            $this->setConfig($configs);
+        }
+
+        // do nothing
+    }
+    /**
      * Sürücü seçimi yapar
      *
      * @param null $driver
