@@ -68,7 +68,7 @@ class Adapter
      */
     public function isWriteable($path)
     {
-        return $this->adapter instanceof Local ? is_writeable($path) : false;
+        return $this->adapter instanceof Local ? is_writable($path) : false;
     }
 
     /**
