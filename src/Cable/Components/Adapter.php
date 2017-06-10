@@ -104,6 +104,7 @@ class Adapter
     {
         return $this->adapter->has($path);
     }
+
     /**
      * call the method from adapter
      *
